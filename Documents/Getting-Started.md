@@ -40,6 +40,44 @@ cmake ^
 
 On Windows, open and build the generated nmos-cpp Visual Studio Solution.
 
+## Installing on Linux
+
+These instructions rely on Arch Linux specifically, but should easily be adapted to other Linux distros/package managers.
+
+1. Installing those packages that are available through the official repository.
+   
+   ```
+   sudo pacman -S base-devel git cmake openssl-1.0 boost websocketpp avahi
+   ```
+
+2. Installing C++ REST SDK from the AUR.
+   ```
+   cd ~/
+   git clone https://aur.archlinux.org/cpprestsdk.git
+   cd cpprestsdk
+   ```
+   
+   - Edit PKGBUILD according to hrantzsch's comment at https://aur.archlinux.org/packages/cpprestsdk/.
+   
+   ```
+   makepkg -i
+   ```
+   
+3. Install nmos-cpp
+   ```
+   cd ~/
+   git clone https://github.com/sony/nmos-cpp.git
+   cd nmos-cpp/Development
+   ```
+   
+   - Add `#include <list>` to cpprest/json_utils.cpp.
+   
+   ```
+   mkdir build && cd build
+   cmake -DWEBSOCKETPP_INCLUDE_DIR:PATH=".../Release/libs/websocketpp" ../
+   make
+   ```
+
 ## Run Tests
 
 All the tests are currently packaged into a single test suite, as the **nmos-cpp-registry-test** application.
