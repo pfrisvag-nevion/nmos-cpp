@@ -78,6 +78,12 @@ These instructions rely on Arch Linux specifically, but should easily be adapted
    make
    ```
 
+4. Starting and enabling the Avahi daemon (has to be running for mDNS to work).
+   
+   ```
+   sudo systemctl enable avahi-daemon
+   sudo systemctl start avahi-daemon
+   ```
 ## Run Tests
 
 All the tests are currently packaged into a single test suite, as the **nmos-cpp-registry-test** application.
